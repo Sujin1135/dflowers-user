@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: user
+
+grpc:
+  server:
+    port: 6565
