@@ -27,10 +27,11 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor")
 
     api("net.devh:grpc-server-spring-boot-starter:3.1.0.RELEASE")
-    api("io.grpc:grpc-netty:1.68.1")
+    api("io.grpc:grpc-netty-shaded:1.68.1")
     api("io.grpc:grpc-protobuf:1.68.1")
     api("io.grpc:grpc-kotlin-stub:1.3.0")
     api("com.google.protobuf:protobuf-java-util:3.22.2")
+    api("com.google.protobuf:protobuf-java:3.22.2")
     api("com.google.protobuf:protobuf-kotlin:3.22.2")
 
     testImplementation("org.springframework.boot:spring-boot-starter-test")
