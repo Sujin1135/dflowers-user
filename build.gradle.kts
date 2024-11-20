@@ -21,11 +21,15 @@ allprojects {
 }
 
 dependencies {
+    implementation(project(":subproject:interface"))
+
     implementation("org.springframework.boot:spring-boot-starter-webflux")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     implementation("io.projectreactor.kotlin:reactor-kotlin-extensions")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor")
+    implementation("io.grpc:grpc-stub:1.68.1")
+    implementation("io.grpc:grpc-kotlin-stub:1.3.0")
 
     compileOnly("org.apache.tomcat:annotations-api:6.0.53")
 
