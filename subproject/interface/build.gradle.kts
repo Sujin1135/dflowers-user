@@ -33,9 +33,11 @@ allprojects {
         implementation("net.devh:grpc-server-spring-boot-starter:3.1.0.RELEASE")
         implementation("io.grpc:grpc-netty-shaded:1.68.1")
         implementation("io.grpc:grpc-protobuf:1.68.1")
+        implementation("io.grpc:grpc-services:1.68.1")
         implementation("com.google.protobuf:protobuf-java-util:3.22.2")
         implementation("com.google.protobuf:protobuf-java:3.22.2")
         implementation("com.google.protobuf:protobuf-kotlin:3.22.2")
+        implementation("javax.annotation:javax.annotation-api:1.2")
     }
 
     protobuf {
