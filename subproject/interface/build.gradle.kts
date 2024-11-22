@@ -4,6 +4,7 @@ import com.google.protobuf.gradle.id
 plugins {
     id("java-library")
     id("com.google.protobuf") version "0.9.4"
+    id("org.jlleitschuh.gradle.ktlint") version "12.1.0"
 }
 
 sourceSets {
@@ -23,6 +24,18 @@ sourceSets {
     }
 }
 
+subprojects {
+    apply(plugin = "org.jlleitschuh.gradle.ktlint")
+
+    configure<org.jlleitschuh.gradle.ktlint.KtlintExtension> {
+        filter {
+            exclude {
+                it.file.path.startsWith(project.layout.buildDirectory.get().dir("generated").toString())
+            }
+        }
+    }
+}
+
 allprojects {
     apply<ProtobufPlugin>()
 
@@ -35,7 +48,6 @@ allprojects {
         implementation("io.grpc:grpc-protobuf:1.68.1")
         implementation("io.grpc:grpc-services:1.68.1")
         implementation("com.google.protobuf:protobuf-java-util:3.22.2")
-        implementation("com.google.protobuf:protobuf-java:3.22.2")
         implementation("com.google.protobuf:protobuf-kotlin:3.22.2")
         implementation("javax.annotation:javax.annotation-api:1.2")
     }
@@ -43,7 +55,7 @@ allprojects {
     protobuf {
         // Protobuf 컴파일러를 지정하여 .proto 파일을 컴파일합니다.
         protoc {
-            artifact = "com.google.protobuf:protoc:4.28.3"
+            artifact = "com.google.protobuf:protoc:3.22.2"
         }
         // gRPC 플러그인을 설정하여 Protobuf 파일로부터 gRPC 관련 코드를 생성합니다.
         plugins {
