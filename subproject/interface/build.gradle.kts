@@ -5,6 +5,7 @@ plugins {
     id("java-library")
     id("com.google.protobuf") version "0.9.4"
     id("org.jlleitschuh.gradle.ktlint") version "12.1.0"
+    kotlin("jvm")
 }
 
 sourceSets {
@@ -47,8 +48,10 @@ allprojects {
         implementation("io.grpc:grpc-netty-shaded:1.68.1")
         implementation("io.grpc:grpc-protobuf:1.68.1")
         implementation("io.grpc:grpc-services:1.68.1")
+        implementation("io.grpc:grpc-kotlin-stub:1.3.0")
+        implementation("io.grpc:grpc-api:1.68.1")
         implementation("com.google.protobuf:protobuf-java-util:3.22.2")
-        implementation("com.google.protobuf:protobuf-kotlin:3.22.2")
+        implementation("com.google.protobuf:protobuf-kotlin:3.22.5")
         implementation("javax.annotation:javax.annotation-api:1.2")
     }
 
