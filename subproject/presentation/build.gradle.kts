@@ -5,5 +5,6 @@ plugins {
 dependencies {
     implementation(project(":subproject:interface"))
 
-    implementation("io.grpc:grpc-stub:1.68.1")
+    implementation("net.devh:grpc-server-spring-boot-starter:3.1.0.RELEASE")
+    implementation("io.grpc:grpc-services:1.68.1")
 }

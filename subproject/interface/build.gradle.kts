@@ -44,15 +44,12 @@ allprojects {
     apply(plugin = "java")
 
     dependencies {
-        implementation("net.devh:grpc-server-spring-boot-starter:3.1.0.RELEASE")
-        implementation("io.grpc:grpc-netty-shaded:1.68.1")
-        implementation("io.grpc:grpc-protobuf:1.68.1")
-        implementation("io.grpc:grpc-services:1.68.1")
-        implementation("io.grpc:grpc-kotlin-stub:1.3.0")
-        implementation("io.grpc:grpc-api:1.68.1")
-        implementation("com.google.protobuf:protobuf-java-util:3.22.2")
-        implementation("com.google.protobuf:protobuf-kotlin:3.22.5")
         implementation("javax.annotation:javax.annotation-api:1.2")
+
+        api("com.google.protobuf:protobuf-kotlin:4.29.0")
+        api("io.grpc:grpc-kotlin-stub:1.3.0")
+        api("io.grpc:grpc-protobuf:1.68.1")
+        api("io.grpc:grpc-netty:1.68.1")
     }
 
     protobuf {
