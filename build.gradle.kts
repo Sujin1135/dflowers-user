@@ -1,8 +1,8 @@
 plugins {
-    kotlin("jvm") version "1.9.25"
-    kotlin("plugin.spring") version "1.9.25"
-    id("org.springframework.boot") version "3.3.5"
-    id("io.spring.dependency-management") version "1.1.6"
+    alias(libs.plugins.kotlin.jvm)
+    alias(libs.plugins.kotlin.spring)
+    alias(libs.plugins.spring.boot)
+    alias(libs.plugins.dependency.management)
 }
 
 group = "io.dflowers"
@@ -26,27 +26,24 @@ dependencies {
 }
 
 allprojects {
-    apply(plugin = "java")
-    apply(plugin = "io.spring.dependency-management")
-    apply(plugin = "org.springframework.boot")
-    apply(plugin = "org.jetbrains.kotlin.plugin.spring")
-
-    apply(plugin = "kotlin")
-    apply(plugin = "kotlin-spring")
+    apply(plugin = rootProject.libs.plugins.kotlin.jvm.get().pluginId)
+    apply(plugin = rootProject.libs.plugins.kotlin.spring.get().pluginId)
+    apply(plugin = rootProject.libs.plugins.spring.boot.get().pluginId)
+    apply(plugin = rootProject.libs.plugins.dependency.management.get().pluginId)
 
     dependencies {
-        implementation("org.springframework.boot:spring-boot-starter-webflux:3.3.5")
-        implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.17.2")
-        implementation("io.projectreactor.kotlin:reactor-kotlin-extensions:1.2.3")
-        implementation("org.jetbrains.kotlin:kotlin-reflect:1.9.25")
-        implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor:1.8.1")
+        implementation(rootProject.libs.spring.boot.webflux)
+        implementation(rootProject.libs.jackson.module.kotlin)
+        implementation(rootProject.libs.reactor.kotlin.extensions)
+        implementation(rootProject.libs.kotlin.reflect)
+        implementation(rootProject.libs.coroutines)
 
-        compileOnly("org.apache.tomcat:annotations-api:6.0.53")
+        compileOnly(rootProject.libs.tomcat)
 
-        testImplementation("org.springframework.boot:spring-boot-starter-test:3.3.5")
-        testImplementation("io.projectreactor:reactor-test:3.7.0")
-        testImplementation("org.jetbrains.kotlin:kotlin-test-junit5:2.1.0")
-        testRuntimeOnly("org.junit.platform:junit-platform-launcher:1.11.3")
+        testImplementation(rootProject.libs.spring.boot.test)
+        testImplementation(rootProject.libs.reactor.test)
+        testImplementation(rootProject.libs.junit5)
+        testRuntimeOnly(rootProject.libs.junit.platform.launcher)
     }
 }
 

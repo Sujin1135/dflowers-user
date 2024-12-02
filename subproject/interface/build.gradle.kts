@@ -2,10 +2,8 @@ import com.google.protobuf.gradle.ProtobufPlugin
 import com.google.protobuf.gradle.id
 
 plugins {
-    id("java-library")
-    id("com.google.protobuf") version "0.9.4"
-    id("org.jlleitschuh.gradle.ktlint") version "12.1.0"
-    kotlin("jvm")
+    alias(libs.plugins.google.protobuf)
+    alias(libs.plugins.jlleitschuh.ktlint)
 }
 
 sourceSets {
@@ -44,12 +42,9 @@ allprojects {
     apply(plugin = "java")
 
     dependencies {
-        implementation("javax.annotation:javax.annotation-api:1.2")
+        implementation(libs.javax.annotation.api)
 
-        api("com.google.protobuf:protobuf-kotlin:4.29.0")
-        api("io.grpc:grpc-kotlin-stub:1.3.0")
-        api("io.grpc:grpc-protobuf:1.68.1")
-        api("io.grpc:grpc-netty:1.68.1")
+        api(libs.bundles.grpc.presentation)
     }
 
     protobuf {
