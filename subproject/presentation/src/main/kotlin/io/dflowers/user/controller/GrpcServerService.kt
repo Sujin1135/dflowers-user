@@ -5,8 +5,6 @@ import io.dflowers.user.grpc.GetUserByIdRequest
 import io.dflowers.user.grpc.GetUserByIdResponse
 import io.dflowers.user.grpc.UserServiceGrpcKt
 import net.devh.boot.grpc.server.service.GrpcService
-import java.time.Instant
-import java.util.*
 
 @GrpcService
 class GrpcServerService : UserServiceGrpcKt.UserServiceCoroutineImplBase() {
