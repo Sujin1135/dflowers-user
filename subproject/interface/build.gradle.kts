@@ -29,7 +29,12 @@ subprojects {
     configure<org.jlleitschuh.gradle.ktlint.KtlintExtension> {
         filter {
             exclude {
-                it.file.path.startsWith(project.layout.buildDirectory.get().dir("generated").toString())
+                it.file.path.startsWith(
+                    project.layout.buildDirectory
+                        .get()
+                        .dir("generated")
+                        .toString(),
+                )
             }
         }
     }

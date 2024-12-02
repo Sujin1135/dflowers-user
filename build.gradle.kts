@@ -29,10 +29,30 @@ dependencies {
 }
 
 allprojects {
-    apply(plugin = rootProject.libs.plugins.kotlin.jvm.get().pluginId)
-    apply(plugin = rootProject.libs.plugins.kotlin.spring.get().pluginId)
-    apply(plugin = rootProject.libs.plugins.spring.boot.get().pluginId)
-    apply(plugin = rootProject.libs.plugins.dependency.management.get().pluginId)
+    apply(
+        plugin =
+            rootProject.libs.plugins.kotlin.jvm
+                .get()
+                .pluginId,
+    )
+    apply(
+        plugin =
+            rootProject.libs.plugins.kotlin.spring
+                .get()
+                .pluginId,
+    )
+    apply(
+        plugin =
+            rootProject.libs.plugins.spring.boot
+                .get()
+                .pluginId,
+    )
+    apply(
+        plugin =
+            rootProject.libs.plugins.dependency.management
+                .get()
+                .pluginId,
+    )
 
     dependencies {
         implementation(rootProject.libs.spring.boot.webflux)
