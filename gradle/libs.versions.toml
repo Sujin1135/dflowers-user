@@ -16,6 +16,10 @@ protobuf-kotlin = "4.29.0"
 javax-annotation-api = "1.2"
 google-protobuf = "0.9.4"
 jlleitschuh-ktlint = "12.1.0"
+postgresql = "42.7.4"
+r2dbc-postgresql = "1.0.7.RELEASE"
+jooq = "3.19.15"
+jooq-plugin = "9.0"
 
 [plugins]
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
@@ -24,6 +28,7 @@ spring-boot = { id = "org.springframework.boot", version.ref = "spring" }
 dependency-management = { id = "io.spring.dependency-management", version.ref = "dependency-management" }
 google-protobuf = { id = "com.google.protobuf", version.ref = "google-protobuf" }
 jlleitschuh-ktlint = { id = "org.jlleitschuh.gradle.ktlint", version.ref = "jlleitschuh-ktlint" }
+jooq = { id = "nu.studer.jooq", version.ref = "jooq-plugin" }
 
 [libraries]
 spring-boot-webflux = { group = "org.springframework.boot", name = "spring-boot-starter-webflux", version.ref = "spring" }
@@ -43,6 +48,13 @@ grpc-protobuf = { group = "io.grpc", name = "grpc-protobuf", version.ref = "grpc
 grpc-netty = { group = "io.grpc", name = "grpc-netty", version.ref = "grpc" }
 protobuf-kotlin = { group = "com.google.protobuf", name = "protobuf-kotlin", version.ref = "protobuf-kotlin" }
 javax-annotation-api = { group = "javax.annotation", name = "javax.annotation-api", version.ref = "javax-annotation-api" }
+r2dbc = { group = "org.springframework.boot", name = "spring-boot-starter-data-r2dbc", version.ref = "spring" }
+postgresql = { group = "org.postgresql", name = "postgresql", version.ref = "postgresql" }
+r2dbc-postgresql = { group = "org.postgresql", name = "r2dbc-postgresql", version.ref = "r2dbc-postgresql" }
+jooq = { group = "org.jooq", name = "jooq-kotlin", version.ref = "jooq" }
+jooq-kotlin = { group = "org.jooq", name = "jooq-kotlin-coroutines", version.ref = "jooq" }
+jooq-codegen = { module = "org.jooq:jooq-codegen", version.ref = "jooq" }
 
 [bundles]
 grpc-presentation = ["grpc-stub", "grpc-protobuf", "grpc-netty", "protobuf-kotlin"]
+db = ["r2dbc", "postgresql", "r2dbc-postgresql", "jooq", "jooq-kotlin"]
