@@ -20,6 +20,7 @@ postgresql = "42.7.4"
 r2dbc-postgresql = "1.0.7.RELEASE"
 jooq = "3.19.15"
 jooq-plugin = "9.0"
+flyway = "11.0.0"
 
 [plugins]
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
@@ -29,6 +30,7 @@ dependency-management = { id = "io.spring.dependency-management", version.ref = 
 google-protobuf = { id = "com.google.protobuf", version.ref = "google-protobuf" }
 jlleitschuh-ktlint = { id = "org.jlleitschuh.gradle.ktlint", version.ref = "jlleitschuh-ktlint" }
 jooq = { id = "nu.studer.jooq", version.ref = "jooq-plugin" }
+flyway = { id = "org.flywaydb.flyway", version.ref = "flyway" }
 
 [libraries]
 spring-boot-webflux = { group = "org.springframework.boot", name = "spring-boot-starter-webflux", version.ref = "spring" }
@@ -53,8 +55,11 @@ postgresql = { group = "org.postgresql", name = "postgresql", version.ref = "pos
 r2dbc-postgresql = { group = "org.postgresql", name = "r2dbc-postgresql", version.ref = "r2dbc-postgresql" }
 jooq = { group = "org.jooq", name = "jooq-kotlin", version.ref = "jooq" }
 jooq-kotlin = { group = "org.jooq", name = "jooq-kotlin-coroutines", version.ref = "jooq" }
-jooq-codegen = { module = "org.jooq:jooq-codegen", version.ref = "jooq" }
+flyway = { group = "org.flywaydb", name = "flyway-core", version.ref = "flyway" }
+flyway-postgresql = { group = "org.flywaydb", name = "flyway-database-postgresql", version.ref = "flyway" }
+jooq-codegen = { group = "org.jooq", name = "jooq-codegen", version.ref = "jooq" }
 
 [bundles]
 grpc-presentation = ["grpc-stub", "grpc-protobuf", "grpc-netty", "protobuf-kotlin"]
 db = ["r2dbc", "postgresql", "r2dbc-postgresql", "jooq", "jooq-kotlin"]
+flyway = ["flyway", "flyway-postgresql"]

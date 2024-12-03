@@ -1,0 +1,13 @@
+spring:
+  r2dbc:
+    url: jdbc:postgresql://${CONF_DB_HOST:localhost}:${CONF_DB_PORT:5432}/${CONF_DB_DATABASE:user}
+    username: ${CONF_DB_USERNAME:postgres}
+    password: ${CONF_DB_PASSWORD:password123!}
+  flyway:
+    enabled: true
+    baseline-on-migrate: true
+    baseline-version: 20240826133347
+    url: jdbc:postgresql://${CONF_DB_HOST:localhost}:${CONF_DB_PORT:5432}/${CONF_DB_DATABASE:user}
+    user: ${CONF_DB_USERNAME:postgres}
+    password: ${CONF_DB_PASSWORD:password123!}
+    locations: classpath:db/migration
