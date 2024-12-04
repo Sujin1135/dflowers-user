@@ -21,6 +21,8 @@ r2dbc-postgresql = "1.0.7.RELEASE"
 jooq = "3.19.15"
 jooq-plugin = "9.0"
 flyway = "11.0.0"
+arrow-kt = "1.2.4"
+kotest = "5.9.1"
 
 [plugins]
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
@@ -58,8 +60,12 @@ jooq-kotlin = { group = "org.jooq", name = "jooq-kotlin-coroutines", version.ref
 flyway = { group = "org.flywaydb", name = "flyway-core", version.ref = "flyway" }
 flyway-postgresql = { group = "org.flywaydb", name = "flyway-database-postgresql", version.ref = "flyway" }
 jooq-codegen = { group = "org.jooq", name = "jooq-codegen", version.ref = "jooq" }
+arrow-kt-core = { group = "io.arrow-kt", name = "arrow-core", version.ref = "arrow-kt" }
+arrow-fx-coroutines = { group = "io.arrow-kt", name = "arrow-fx-coroutines", version.ref = "arrow-kt" }
+kotest = { group = "io.kotest", name = "kotest-runner-junit5-jvm", version.ref = "kotest" }
 
 [bundles]
 grpc-presentation = ["grpc-stub", "grpc-protobuf", "grpc-netty", "protobuf-kotlin"]
 db = ["r2dbc", "postgresql", "r2dbc-postgresql", "jooq", "jooq-kotlin"]
 flyway = ["flyway", "flyway-postgresql"]
+arrow-kt = ["arrow-kt-core", "arrow-fx-coroutines"]

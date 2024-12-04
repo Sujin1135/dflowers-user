@@ -60,12 +60,14 @@ allprojects {
         implementation(rootProject.libs.reactor.kotlin.extensions)
         implementation(rootProject.libs.kotlin.reflect)
         implementation(rootProject.libs.coroutines)
+        implementation(rootProject.libs.bundles.arrow.kt)
 
         compileOnly(rootProject.libs.tomcat)
 
         testImplementation(rootProject.libs.spring.boot.test)
         testImplementation(rootProject.libs.reactor.test)
         testImplementation(rootProject.libs.junit5)
+        testImplementation(rootProject.libs.kotest)
         testRuntimeOnly(rootProject.libs.junit.platform.launcher)
     }
 }

@@ -1,7 +1,10 @@
 package io.dflowers.user.repository
 
+import arrow.core.raise.Effect
 import io.dflowers.user.entity.User
 
 interface UserRepository {
-    suspend fun findUserByEmail(email: String): List<User>
+    fun findOneByEmail(email: String): Effect<Nothing, User?>
+
+    fun findOne(id: String): Effect<Nothing, User?>
 }
