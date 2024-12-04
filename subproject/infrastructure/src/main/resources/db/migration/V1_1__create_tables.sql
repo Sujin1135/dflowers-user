@@ -12,6 +12,9 @@ create table if not exists users
     modified timestamp default CURRENT_TIMESTAMP                             not null
 );
 
+create index users_email_deleted_created_index
+    on users (email asc, deleted asc, created desc);
+
 create table if not exists owners
 (
     id       uuid                                                            not null
@@ -23,3 +26,6 @@ create table if not exists owners
     created  timestamp default CURRENT_TIMESTAMP                             not null,
     modified timestamp default CURRENT_TIMESTAMP                             not null
 );
+
+create index owners_email_deleted_created_index
+    on owners (email asc, deleted asc, created desc);

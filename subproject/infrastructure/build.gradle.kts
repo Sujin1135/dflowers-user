@@ -1,3 +1,6 @@
+import org.jooq.meta.jaxb.ForcedType
+import org.jooq.meta.jaxb.Logging
+
 plugins {
     alias(libs.plugins.flyway)
     alias(libs.plugins.jooq)
@@ -18,8 +21,9 @@ dependencies {
     implementation(project(":subproject:domain"))
 
     implementation(libs.bundles.db)
-
     implementation(libs.bundles.flyway)
+
+    jooqGenerator(libs.postgresql)
 }
 
 val dbHost: String = System.getenv("DB_HOST") ?: "127.0.0.1"
@@ -40,4 +44,54 @@ flyway {
         listOf("filesystem:src/main/resources/db/migration/")
             .toTypedArray()
     cleanDisabled = false
+}
+
+jooq {
+    configurations {
+        create("main") {
+            generateSchemaSourceOnCompilation.set(true)
+
+            jooqConfiguration.apply {
+                logging = Logging.WARN
+                jdbc.apply {
+                    driver = "org.postgresql.Driver"
+                    url = "jdbc:postgresql://$dbHost:$dbPort/$dbSchema"
+                    user = dbUser
+                    password = dbPassword
+                }
+                generator.apply {
+                    name = "org.jooq.codegen.DefaultGenerator"
+                    database.apply {
+                        name = "org.jooq.meta.postgres.PostgresDatabase"
+                        inputSchema = "public"
+                        forcedTypes.addAll(
+                            listOf(
+                                ForcedType().apply {
+                                    name = "varchar"
+                                    includeExpression = ".*"
+                                    includeTypes = "JSONB?"
+                                },
+                                ForcedType().apply {
+                                    name = "varchar"
+                                    includeExpression = ".*"
+                                    includeTypes = "INET"
+                                },
+                            ),
+                        )
+                    }
+                    generate.apply {
+                        isDeprecated = false
+                        isRecords = true
+                        isImmutablePojos = true
+                        isFluentSetters = true
+                    }
+                    target.apply {
+                        packageName = "nu.studer.sample"
+                        directory = "build/generated-src/jooq/main"
+                    }
+                    strategy.name = "org.jooq.codegen.DefaultGeneratorStrategy"
+                }
+            }
+        }
+    }
 }
