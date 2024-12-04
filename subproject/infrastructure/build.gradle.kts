@@ -30,7 +30,7 @@ val dbPassword: String = System.getenv("DB_PASSWORD") ?: "password123!"
 
 flyway {
     driver = "org.postgresql.Driver"
-    url = "jdbc:postgresql://$dbHost:$dbPort/:$dbSchema"
+    url = "jdbc:postgresql://$dbHost:$dbPort/$dbSchema"
     baselineVersion = "1"
     baselineDescription = "true"
     table = "migration_history"
