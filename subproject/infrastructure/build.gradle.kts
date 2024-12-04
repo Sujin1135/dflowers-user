@@ -33,7 +33,6 @@ flyway {
     url = "jdbc:postgresql://$dbHost:$dbPort/$dbSchema"
     baselineVersion = "1"
     baselineDescription = "true"
-    table = "migration_history"
     user = dbUser
     password = dbPassword
     connectRetries = 60
