@@ -20,8 +20,10 @@ buildscript {
 dependencies {
     implementation(project(":subproject:domain"))
 
-    implementation(libs.bundles.db)
-    implementation(libs.bundles.flyway)
+    api(libs.bundles.db)
+    api(libs.bundles.flyway)
+
+    testApi(libs.bundles.testcontainers)
 
     jooqGenerator(libs.postgresql)
 }
