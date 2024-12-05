@@ -6,7 +6,7 @@ kotlin = "1.9.25"
 coroutines = "1.8.1"
 tomcat = "6.0.53"
 reactor-test = "3.7.0"
-junit5 = "2.1.0"
+junit5 = "1.9.0"
 junit-platform-launcher = "1.11.3"
 dependency-management = "1.1.6"
 grpc = "1.68.1"
@@ -22,7 +22,8 @@ jooq = "3.19.15"
 jooq-plugin = "9.0"
 flyway = "11.0.0"
 arrow-kt = "1.2.4"
-kotest = "5.9.1"
+kotest = "5.7.2"
+kotest-spring = "4.4.3"
 
 [plugins]
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
@@ -63,9 +64,12 @@ jooq-codegen = { group = "org.jooq", name = "jooq-codegen", version.ref = "jooq"
 arrow-kt-core = { group = "io.arrow-kt", name = "arrow-core", version.ref = "arrow-kt" }
 arrow-fx-coroutines = { group = "io.arrow-kt", name = "arrow-fx-coroutines", version.ref = "arrow-kt" }
 kotest = { group = "io.kotest", name = "kotest-runner-junit5-jvm", version.ref = "kotest" }
+kotest-assertion = { group = "io.kotest", name = "kotest-assertions-core", version.ref = "kotest" }
+kotest-spring = { group = "io.kotest", name = "kotest-extensions-spring", version.ref = "kotest-spring" }
 
 [bundles]
 grpc-presentation = ["grpc-stub", "grpc-protobuf", "grpc-netty", "protobuf-kotlin"]
 db = ["r2dbc", "postgresql", "r2dbc-postgresql", "jooq", "jooq-kotlin"]
 flyway = ["flyway", "flyway-postgresql"]
 arrow-kt = ["arrow-kt-core", "arrow-fx-coroutines"]
+kotest = ["kotest", "kotest-assertion", "kotest-spring"]

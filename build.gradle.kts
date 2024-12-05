@@ -67,7 +67,7 @@ allprojects {
         testImplementation(rootProject.libs.spring.boot.test)
         testImplementation(rootProject.libs.reactor.test)
         testImplementation(rootProject.libs.junit5)
-        testImplementation(rootProject.libs.kotest)
+        testImplementation(rootProject.libs.bundles.kotest)
         testRuntimeOnly(rootProject.libs.junit.platform.launcher)
     }
 }

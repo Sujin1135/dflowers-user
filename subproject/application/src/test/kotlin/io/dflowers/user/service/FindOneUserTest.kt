@@ -1,15 +1,19 @@
 package io.dflowers.user.service
 
-import io.kotest.core.spec.style.FunSpec
+import io.dflowers.user.UserApplicationTest
+import io.kotest.core.spec.style.FreeSpec
+import io.kotest.extensions.spring.SpringExtension
 import io.kotest.matchers.shouldBe
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.test.context.ContextConfiguration
 
 @ContextConfiguration
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@SpringBootTest(classes = [UserApplicationTest::class])
 class FindOneUserTest :
-    FunSpec({
-        test("test") {
-            1 + 1 shouldBe 2
+    FreeSpec({
+        extension(SpringExtension)
+
+        "add" - {
+            1 + 3 shouldBe 4
         }
     })
