@@ -6,7 +6,6 @@ import io.dflowers.user.config.R2dbcConfig
 import io.dflowers.user.repository.UserRepository
 import io.dflowers.user.repository.UserRepositoryImpl
 import io.kotest.core.spec.style.FreeSpec
-import io.kotest.extensions.spring.SpringExtension
 import io.kotest.matchers.shouldBe
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.context.annotation.Import
@@ -24,8 +23,6 @@ import org.springframework.test.context.TestPropertySource
 class FindOneUserTest(
     private val findOneUser: FindOneUser,
 ) : FreeSpec({
-        extension(SpringExtension)
-
         "add" - {
             1 + 3 shouldBe 4
         }
