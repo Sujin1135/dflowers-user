@@ -23,8 +23,6 @@ dependencies {
     api(libs.bundles.db)
     api(libs.bundles.flyway)
 
-    testApi(libs.bundles.testcontainers)
-
     jooqGenerator(libs.postgresql)
 }
 

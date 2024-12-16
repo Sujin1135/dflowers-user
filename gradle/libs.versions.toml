@@ -71,6 +71,7 @@ testcontainers = { group = "org.testcontainers", name = "testcontainers", versio
 testcontainers-junit-jupiter = { group = "org.testcontainers", name = "junit-jupiter", version.ref = "testcontainers" }
 testcontainers-r2dbc = { group = "org.testcontainers", name = "r2dbc", version.ref = "testcontainers" }
 testcontainers-postgresql = { group = "org.testcontainers", name = "postgresql", version.ref = "testcontainers" }
+spring-boot-testcontainers = { module = "org.springframework.boot:spring-boot-testcontainers", version.ref = "spring" }
 
 [bundles]
 grpc-presentation = ["grpc-stub", "grpc-protobuf", "grpc-netty", "protobuf-kotlin"]
@@ -78,4 +79,4 @@ db = ["r2dbc", "postgresql", "r2dbc-postgresql", "jooq", "jooq-kotlin"]
 flyway = ["flyway", "flyway-postgresql"]
 arrow-kt = ["arrow-kt-core", "arrow-fx-coroutines"]
 kotest = ["kotest", "kotest-assertion", "kotest-spring"]
-testcontainers = ["testcontainers", "testcontainers-junit-jupiter", "testcontainers-r2dbc", "testcontainers-postgresql"]
+testcontainers = ["testcontainers", "testcontainers-junit-jupiter", "testcontainers-r2dbc", "testcontainers-postgresql", "spring-boot-testcontainers"]
