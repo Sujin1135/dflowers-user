@@ -73,6 +73,8 @@ allprojects {
 
         detektPlugins(rootProject.libs.detekt.rules)
 
+        implementation(rootProject.libs.block.hound)
+
         compileOnly(rootProject.libs.tomcat)
 
         testImplementation(rootProject.libs.spring.boot.test)
