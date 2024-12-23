@@ -5,7 +5,9 @@ import arrow.core.raise.effect
 import arrow.core.raise.ensure
 import io.dflowers.user.entity.User
 import io.dflowers.user.repository.UserRepository
+import org.springframework.stereotype.Service
 
+@Service
 class SignUp(
     private val userRepository: UserRepository,
 ) {
@@ -17,7 +19,7 @@ class SignUp(
         email: User.Email,
         password: User.Password,
         name: User.Name,
-    ): Effect<Failure, User?> =
+    ): Effect<Failure, User> =
         effect {
             ensure(userRepository.findOneByEmail(email).bind() == null) {
                 raise(Failure.AlreadyExists)

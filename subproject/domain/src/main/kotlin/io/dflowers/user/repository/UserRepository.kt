@@ -8,5 +8,5 @@ interface UserRepository {
 
     fun findOne(id: String): Effect<Nothing, User?>
 
-    fun insert(user: User): Effect<Nothing, User?>
+    fun insert(user: User): Effect<Nothing, User>
 }

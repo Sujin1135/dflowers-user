@@ -35,14 +35,14 @@ class UserRepositoryImpl(
                 ?.toDomain()
         }
 
-    override fun insert(user: User): Effect<Nothing, User?> =
+    override fun insert(user: User): Effect<Nothing, User> =
         effect {
             dslContext
                 .insertInto(USERS)
                 .set(user.toRecord())
                 .awaitSingle()
 
-            findOne(user.id.toString()).bind()
+            findOne(user.id.toString()).bind()!!
         }
 
     private fun UsersRecord.toDomain() =

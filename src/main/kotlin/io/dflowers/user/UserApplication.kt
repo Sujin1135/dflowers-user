@@ -9,6 +9,9 @@ class UserApplication
 
 fun main(args: Array<String>) {
     System.setProperty("spring.config.name", "application,application-infrastructure,application-app")
-    BlockHound.install()
+    BlockHound
+        .builder()
+        .allowBlockingCallsInside("org.springframework.security.crypto.password.PasswordEncoder", "encode")
+        .install()
     runApplication<UserApplication>(*args)
 }
