@@ -23,7 +23,7 @@ class AuthController(
     private val signUp: SignUp,
     private val passwordEncoder: PasswordEncoder,
 ) {
-    @PostMapping("/sign-in")
+    @PostMapping("/sign-up")
     suspend fun signUp(
         @Valid @RequestBody body: SignUpRequest,
     ): ResponseEntity<SignUpResponse> {
