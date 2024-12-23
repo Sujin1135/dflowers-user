@@ -8,7 +8,7 @@ import reactor.blockhound.BlockHound
 class UserApplication
 
 fun main(args: Array<String>) {
-    System.setProperty("spring.config.name", "application,application-infrastructure,application-app")
+    System.setProperty("spring.config.name", "application,application-infrastructure,application-app,application-presentation")
     BlockHound
         .builder()
         .allowBlockingCallsInside("org.springframework.security.crypto.password.PasswordEncoder", "encode")

@@ -32,6 +32,7 @@ block-hound = "1.0.10.RELEASE"
 swagger = "2.3.0"
 jjwt = "0.12.6"
 bcrypt = "0.4.3"
+expedia-graphql = "8.2.1"
 
 [plugins]
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
@@ -90,6 +91,7 @@ jjwt-impl = { module = "io.jsonwebtoken:jjwt-impl", version.ref = "jjwt" }
 jjwt-jackson = { module = "io.jsonwebtoken:jjwt-jackson", version.ref = "jjwt" }
 spring-validation = { module = "org.springframework.boot:spring-boot-starter-validation", version.ref = "spring" }
 bcrypt = { group = "de.svenkubiak", name = "jBCrypt", version.ref = "bcrypt" }
+expedia-graphql = { group = "com.expediagroup", name = "graphql-kotlin-spring-server", version.ref = "expedia-graphql" }
 
 [bundles]
 grpc-presentation = ["grpc-stub", "grpc-protobuf", "grpc-netty", "protobuf-kotlin"]
