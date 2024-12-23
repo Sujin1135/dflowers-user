@@ -1,7 +1,13 @@
 package io.dflowers.user.entity
 
-// TODO: It should be added fields
+import java.time.LocalDateTime
+import java.util.UUID
+
 data class User(
-    val id: String,
+    override val id: UUID,
     val email: String,
-)
+    val name: String,
+    override val created: LocalDateTime,
+    override val deleted: LocalDateTime?,
+    override val modified: LocalDateTime,
+) : SoftDeleteBase

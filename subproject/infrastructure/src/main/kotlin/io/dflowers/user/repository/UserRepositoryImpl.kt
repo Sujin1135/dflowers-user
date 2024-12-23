@@ -34,7 +34,11 @@ class UserRepositoryImpl(
 
     private fun UsersRecord.toDomain() =
         User(
-            id = this.id.toString(),
+            id = this.id!!,
             email = this.email!!,
+            name = this.name!!,
+            deleted = this.deleted,
+            created = this.created!!,
+            modified = this.modified!!,
         )
 }

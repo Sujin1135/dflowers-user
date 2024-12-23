@@ -64,7 +64,7 @@ class FindOneUserTest(
             val sut = findOneUser(email).toEither().shouldBeRight()
 
             sut shouldNotBe null
-            sut?.id shouldBe testId.toString()
+            sut?.id shouldBe testId
             sut?.email shouldBe email
         }
     })
