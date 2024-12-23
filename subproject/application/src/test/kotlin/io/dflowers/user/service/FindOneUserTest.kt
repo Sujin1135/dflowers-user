@@ -4,6 +4,7 @@ import arrow.core.raise.toEither
 import io.dflowers.user.config.FlywayTestConfig
 import io.dflowers.user.config.JooqTestConfig
 import io.dflowers.user.config.TestcontainersConfig
+import io.dflowers.user.entity.User
 import io.dflowers.user.persistence.model.tables.Users.Companion.USERS
 import io.dflowers.user.persistence.model.tables.records.UsersRecord
 import io.dflowers.user.repository.UserRepository
@@ -40,7 +41,7 @@ class FindOneUserTest(
     private val dslContext: DSLContext,
 ) : FreeSpec({
         val testId = UUID.randomUUID()
-        val email = "test@test.com"
+        val email = User.Email("test@test.com")
 
         beforeTest {
             flyway.clean()
@@ -50,7 +51,7 @@ class FindOneUserTest(
                 .set(
                     UsersRecord(
                         id = testId,
-                        email = email,
+                        email = email.value,
                         name = "test",
                         password = UUID.randomUUID().toString(),
                         deleted = null,
@@ -60,7 +61,7 @@ class FindOneUserTest(
                 ).awaitLast()
         }
 
-        "should returns an existing user by the user email" - {
+        "should return an existing user by the user email" - {
             val sut = findOneUser(email).toEither().shouldBeRight()
 
             sut shouldNotBe null

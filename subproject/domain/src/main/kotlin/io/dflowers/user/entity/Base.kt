@@ -5,6 +5,16 @@ import java.util.UUID
 
 interface Base {
     val id: UUID
-    val created: LocalDateTime
-    val modified: LocalDateTime
+    val created: Created
+    val modified: Modified
+
+    @JvmInline
+    value class Created(
+        val value: LocalDateTime,
+    )
+
+    @JvmInline
+    value class Modified(
+        val value: LocalDateTime,
+    )
 }

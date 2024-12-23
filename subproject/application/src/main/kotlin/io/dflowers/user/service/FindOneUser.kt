@@ -8,7 +8,7 @@ import io.dflowers.user.repository.UserRepository
 class FindOneUser(
     private val userRepository: UserRepository,
 ) {
-    operator fun invoke(email: String): Effect<Nothing, User?> =
+    operator fun invoke(email: User.Email): Effect<Nothing, User?> =
         effect {
             userRepository.findOneByEmail(email).bind()
         }

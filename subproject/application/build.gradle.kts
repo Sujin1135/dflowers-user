@@ -6,4 +6,5 @@ dependencies {
     testImplementation(project(":subproject:infrastructure"))
 
     testImplementation(libs.bundles.testcontainers)
+    testImplementation(libs.bcrypt)
 }

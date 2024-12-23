@@ -31,6 +31,7 @@ detekt-rules = "0.5.0"
 block-hound = "1.0.10.RELEASE"
 swagger = "2.3.0"
 jjwt = "0.12.6"
+bcrypt = "0.4.3"
 
 [plugins]
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
@@ -88,6 +89,7 @@ jjwt-api = { module = "io.jsonwebtoken:jjwt-api", version.ref = "jjwt" }
 jjwt-impl = { module = "io.jsonwebtoken:jjwt-impl", version.ref = "jjwt" }
 jjwt-jackson = { module = "io.jsonwebtoken:jjwt-jackson", version.ref = "jjwt" }
 spring-validation = { module = "org.springframework.boot:spring-boot-starter-validation", version.ref = "spring" }
+bcrypt = { group = "de.svenkubiak", name = "jBCrypt", version.ref = "bcrypt" }
 
 [bundles]
 grpc-presentation = ["grpc-stub", "grpc-protobuf", "grpc-netty", "protobuf-kotlin"]
