@@ -1,9 +1,6 @@
-package io.dflowers.user.controller
+package io.dflowers.user.grpc
 
 import com.google.protobuf.Timestamp
-import io.dflowers.user.grpc.GetUserByIdRequest
-import io.dflowers.user.grpc.GetUserByIdResponse
-import io.dflowers.user.grpc.UserServiceGrpcKt
 import net.devh.boot.grpc.server.service.GrpcService
 
 @GrpcService
