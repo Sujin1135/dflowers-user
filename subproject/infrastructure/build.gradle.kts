@@ -60,7 +60,7 @@ jooq {
                     password = dbPassword
                 }
                 generator.apply {
-                    name = "org.jooq.codegen.DefaultGenerator"
+                    name = "org.jooq.codegen.KotlinGenerator"
                     database.apply {
                         name = "org.jooq.meta.postgres.PostgresDatabase"
                         inputSchema = "public"
@@ -86,7 +86,7 @@ jooq {
                         isFluentSetters = true
                     }
                     target.apply {
-                        packageName = "nu.studer.sample"
+                        packageName = "io.dflowers.user.persistence.model"
                         directory = "build/generated-src/jooq/main"
                     }
                     strategy.name = "org.jooq.codegen.DefaultGeneratorStrategy"
