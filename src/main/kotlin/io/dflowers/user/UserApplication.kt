@@ -8,6 +8,7 @@ import reactor.blockhound.BlockHound
 class UserApplication
 
 fun main(args: Array<String>) {
+    System.setProperty("spring.config.name", "application,application-infrastructure,application-app")
     BlockHound.install()
     runApplication<UserApplication>(*args)
 }

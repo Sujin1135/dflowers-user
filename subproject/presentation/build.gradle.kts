@@ -5,4 +5,6 @@ dependencies {
 
     implementation(libs.grpc.spring)
     implementation(libs.grpc.services)
+    implementation(libs.spring.security)
+    implementation(libs.swagger)
 }

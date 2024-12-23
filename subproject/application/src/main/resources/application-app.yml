@@ -1,0 +1,6 @@
+jwt:
+  access-secret-key: ${ACCESS_SECRET_KEY:DadFufN4Oui8Bfv3ScFj6R9fyJ9hD45E6AGFsXgFsRhT4YSdSb}
+  access-token-expiration-millis: ${ACCESS_TOKEN_EXPIRATION_MILLIS:300000}
+  refresh-secret-key: ${ACCESS_SECRET_KEY:DadFufN4Oui8Bfv3ScFj6R9fyJ9hD45E6AGFsXgFsRhT4YSdSe}
+  refresh-token-expiration-millis: ${REFRESH_TOKEN_EXPIRATION_MILLIS:2592000000}
+  issuer: ${ISSUER:mango1135}
