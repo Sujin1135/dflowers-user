@@ -92,6 +92,7 @@ jjwt-jackson = { module = "io.jsonwebtoken:jjwt-jackson", version.ref = "jjwt" }
 spring-validation = { module = "org.springframework.boot:spring-boot-starter-validation", version.ref = "spring" }
 bcrypt = { group = "de.svenkubiak", name = "jBCrypt", version.ref = "bcrypt" }
 expedia-graphql = { group = "com.expediagroup", name = "graphql-kotlin-spring-server", version.ref = "expedia-graphql" }
+expedia-schema-generator = { group = "com.expediagroup", name = "graphql-kotlin-schema-generator", version.ref = "expedia-graphql" }
 
 [bundles]
 grpc-presentation = ["grpc-stub", "grpc-protobuf", "grpc-netty", "protobuf-kotlin"]
@@ -101,3 +102,4 @@ arrow-kt = ["arrow-kt-core", "arrow-fx-coroutines"]
 kotest = ["kotest", "kotest-assertion", "kotest-spring", "kotest-arrow-kt"]
 testcontainers = ["testcontainers", "testcontainers-junit-jupiter", "testcontainers-r2dbc", "testcontainers-postgresql", "spring-boot-testcontainers"]
 jjwt = ["jjwt-api", "jjwt-impl", "jjwt-jackson"]
+expedia-graphql = ["expedia-graphql", "expedia-schema-generator"]
