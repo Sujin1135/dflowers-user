@@ -29,7 +29,6 @@ class SecurityConfig {
                 authorize("/webjars/swagger-ui.html", permitAll)
                 authorize("/webjars/swagger-ui/**", permitAll)
                 authorize("/v3/api-docs/**", permitAll)
-                authorize("/graphql", permitAll)
                 authorize("/graphiql", permitAll)
                 authorize("/**", authenticated)
             }
