@@ -35,7 +35,15 @@ class AuthController(
         @Valid @RequestBody body: SignInRequest,
     ): ResponseEntity<SignInResponse> {
         val user =
-            findOneUser(User.Email(body.email)).get()
+            findOneUser(User.Email(body.email))
+                .mapError {
+                    when (it) {
+                        FindOneUser.Failure.NotFoundUser -> throw HttpException.NotFound.create(
+                            objectName = User::class.simpleName!!,
+                            objectId = body.email,
+                        )
+                    }
+                }.get()
                 ?: throw HttpException.NotFound.create(objectName = User::class.java.name, objectId = body.email)
 
         if (!passwordEncoder.matches(body.password, user.password.value)) {

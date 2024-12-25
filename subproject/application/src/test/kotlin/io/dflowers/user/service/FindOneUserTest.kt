@@ -9,10 +9,12 @@ import io.dflowers.user.persistence.model.tables.Users.Companion.USERS
 import io.dflowers.user.persistence.model.tables.records.UsersRecord
 import io.dflowers.user.repository.UserRepository
 import io.dflowers.user.repository.UserRepositoryImpl
+import io.kotest.assertions.arrow.core.shouldBeLeft
 import io.kotest.assertions.arrow.core.shouldBeRight
 import io.kotest.core.spec.style.FreeSpec
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.shouldNotBe
+import io.kotest.matchers.types.shouldBeTypeOf
 import kotlinx.coroutines.reactive.awaitLast
 import org.flywaydb.core.Flyway
 import org.jooq.DSLContext
@@ -65,7 +67,11 @@ class FindOneUserTest(
             val sut = findOneUser(email).toEither().shouldBeRight()
 
             sut shouldNotBe null
-            sut?.id shouldBe testId
-            sut?.email shouldBe email
+            sut.id shouldBe testId
+            sut.email shouldBe email
+        }
+
+        "should raise not found failure by invalid user email" - {
+            findOneUser(User.Email("invalid@example.com")).toEither().shouldBeLeft().shouldBeTypeOf<FindOneUser.Failure.NotFoundUser>()
         }
     })

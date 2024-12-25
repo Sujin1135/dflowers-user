@@ -9,6 +9,7 @@ import graphql.schema.GraphQLSchema
 import graphql.schema.GraphQLType
 import graphql.schema.idl.RuntimeWiring
 import io.dflowers.user.graphql.query.UserQuery
+import io.dflowers.user.service.FindOneUser
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.graphql.execution.RuntimeWiringConfigurer
@@ -16,7 +17,9 @@ import java.time.LocalDateTime
 import kotlin.reflect.KType
 
 @Configuration
-class GraphqlConfig {
+class GraphqlConfig(
+    private val findOneUser: FindOneUser,
+) {
     @Bean
     fun runtimeWiringConfigurer(): RuntimeWiringConfigurer =
         RuntimeWiringConfigurer { wiringBuilder: RuntimeWiring.Builder ->
@@ -36,7 +39,7 @@ class GraphqlConfig {
                 ),
             queries =
                 listOf(
-                    TopLevelObject(UserQuery()),
+                    TopLevelObject(UserQuery(findOneUser)),
                 ),
         )
 }
