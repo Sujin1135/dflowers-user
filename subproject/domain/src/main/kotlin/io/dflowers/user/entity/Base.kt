@@ -1,6 +1,6 @@
 package io.dflowers.user.entity
 
-import java.time.LocalDateTime
+import java.time.OffsetDateTime
 import java.util.UUID
 
 interface Base {
@@ -10,11 +10,11 @@ interface Base {
 
     @JvmInline
     value class Created(
-        val value: LocalDateTime,
+        val value: OffsetDateTime,
     )
 
     @JvmInline
     value class Modified(
-        val value: LocalDateTime,
+        val value: OffsetDateTime,
     )
 }

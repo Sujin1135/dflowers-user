@@ -13,7 +13,7 @@ import io.dflowers.user.service.FindOneUser
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.graphql.execution.RuntimeWiringConfigurer
-import java.time.LocalDateTime
+import java.time.OffsetDateTime
 import kotlin.reflect.KType
 
 @Configuration
@@ -47,7 +47,7 @@ class GraphqlConfig(
 class CustomSchemaGeneratorHooks : SchemaGeneratorHooks {
     override fun willGenerateGraphQLType(type: KType): GraphQLType? =
         when (type.classifier) {
-            LocalDateTime::class -> ExtendedScalars.DateTime
+            OffsetDateTime::class -> ExtendedScalars.DateTime
             else -> null
         }
 }

@@ -1,6 +1,6 @@
 package io.dflowers.user.entity
 
-import java.time.LocalDateTime
+import java.time.OffsetDateTime
 import java.util.UUID
 
 data class User(
@@ -18,7 +18,7 @@ data class User(
             password: Password,
             name: Name,
         ): User {
-            val now = LocalDateTime.now()
+            val now = OffsetDateTime.now()
             return User(
                 id = UUID.randomUUID(),
                 email = email,

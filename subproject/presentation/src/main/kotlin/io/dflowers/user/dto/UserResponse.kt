@@ -17,8 +17,8 @@ data class UserResponse(
                 id = user.id,
                 email = user.email.value,
                 name = user.name.value,
-                created = user.created.value,
-                modified = user.modified.value,
+                created = user.created.value.toLocalDateTime(),
+                modified = user.modified.value.toLocalDateTime(),
             )
     }
 }

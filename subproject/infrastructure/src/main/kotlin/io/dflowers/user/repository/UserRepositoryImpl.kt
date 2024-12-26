@@ -11,6 +11,7 @@ import kotlinx.coroutines.reactive.awaitFirstOrNull
 import kotlinx.coroutines.reactive.awaitSingle
 import org.jooq.DSLContext
 import org.springframework.stereotype.Repository
+import java.time.ZoneOffset
 import java.util.UUID
 
 @Repository
@@ -51,9 +52,9 @@ class UserRepositoryImpl(
             email = User.Email(this.email!!),
             password = User.Password(this.password!!),
             name = User.Name(this.name!!),
-            deleted = SoftDeleteBase.Deleted(this.deleted),
-            created = Base.Created(this.created!!),
-            modified = Base.Modified(this.modified!!),
+            deleted = SoftDeleteBase.Deleted(this.deleted?.atOffset(ZoneOffset.UTC)),
+            created = Base.Created(this.created!!.atOffset(ZoneOffset.UTC)),
+            modified = Base.Modified(this.modified!!.atOffset(ZoneOffset.UTC)),
         )
 
     private fun User.toRecord() =
@@ -62,8 +63,8 @@ class UserRepositoryImpl(
             email = this.email.value,
             name = this.name.value,
             password = this.password.value,
-            deleted = this.deleted?.value,
-            created = this.created.value,
-            modified = this.modified.value,
+            deleted = this.deleted?.value?.toLocalDateTime(),
+            created = this.created.value.toLocalDateTime(),
+            modified = this.modified.value.toLocalDateTime(),
         )
 }
