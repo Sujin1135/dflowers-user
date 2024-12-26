@@ -44,7 +44,6 @@ class AuthController(
                         )
                     }
                 }.get()
-                ?: throw HttpException.NotFound.create(objectName = User::class.java.name, objectId = body.email)
 
         if (!passwordEncoder.matches(body.password, user.password.value)) {
             throw HttpException.Unauthorized.create(ErrorCode.WRONG_CREDENTIALS, "사용자 이메일 혹은 비밀번호가 올바르지 않습니다.")
