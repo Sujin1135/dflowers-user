@@ -32,8 +32,8 @@ block-hound = "1.0.10.RELEASE"
 swagger = "2.3.0"
 jjwt = "0.12.6"
 bcrypt = "0.4.3"
-expedia-graphql = "8.2.1"
 java-extended-scalars = "22.0"
+dgs = "9.2.2"
 
 [plugins]
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
@@ -93,9 +93,8 @@ jjwt-jackson = { module = "io.jsonwebtoken:jjwt-jackson", version.ref = "jjwt" }
 spring-validation = { module = "org.springframework.boot:spring-boot-starter-validation", version.ref = "spring" }
 spring-graphql = { group = "org.springframework.boot", name = "spring-boot-starter-graphql", version.ref = "spring" }
 bcrypt = { group = "de.svenkubiak", name = "jBCrypt", version.ref = "bcrypt" }
-expedia-graphql = { group = "com.expediagroup", name = "graphql-kotlin-spring-server", version.ref = "expedia-graphql" }
-expedia-schema-generator = { group = "com.expediagroup", name = "graphql-kotlin-schema-generator", version.ref = "expedia-graphql" }
 java-extended-scalars = { group = "com.graphql-java", name = "graphql-java-extended-scalars", version.ref = "java-extended-scalars" }
+dgs-starter = { group = "com.netflix.graphql.dgs", name = "graphql-dgs-webflux-starter", version.ref = "dgs" }
 
 [bundles]
 grpc-presentation = ["grpc-stub", "grpc-protobuf", "grpc-netty", "protobuf-kotlin"]
@@ -105,4 +104,4 @@ arrow-kt = ["arrow-kt-core", "arrow-fx-coroutines"]
 kotest = ["kotest", "kotest-assertion", "kotest-spring", "kotest-arrow-kt"]
 testcontainers = ["testcontainers", "testcontainers-junit-jupiter", "testcontainers-r2dbc", "testcontainers-postgresql", "spring-boot-testcontainers"]
 jjwt = ["jjwt-api", "jjwt-impl", "jjwt-jackson"]
-expedia-graphql = ["expedia-graphql", "expedia-schema-generator", "java-extended-scalars", "spring-graphql"]
+expedia-graphql = ["java-extended-scalars", "spring-graphql", "dgs-starter"]
