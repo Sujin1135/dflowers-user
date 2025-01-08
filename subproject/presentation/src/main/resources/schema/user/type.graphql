@@ -1,0 +1,9 @@
+scalar DateTime
+
+type User {
+    id: String
+    email: String
+    name: String
+    created: DateTime
+    modified: DateTime
+}

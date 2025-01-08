@@ -8,5 +8,5 @@ dependencies {
     implementation(libs.spring.security)
     implementation(libs.swagger)
     implementation(libs.spring.validation)
-    implementation(libs.bundles.expedia.graphql)
+    implementation(libs.bundles.graphql)
 }

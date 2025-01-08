@@ -1,0 +1,3 @@
+extend type Query {
+    users(name: String): [User]
+}
