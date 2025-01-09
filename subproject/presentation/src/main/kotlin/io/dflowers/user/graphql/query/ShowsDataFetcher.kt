@@ -3,6 +3,8 @@ package io.dflowers.user.graphql.query
 import com.netflix.graphql.dgs.DgsComponent
 import com.netflix.graphql.dgs.DgsQuery
 import com.netflix.graphql.dgs.InputArgument
+import org.springframework.security.access.prepost.PreAuthorize
+import reactor.core.publisher.Flux
 import java.time.OffsetDateTime
 
 @DgsComponent
@@ -40,14 +42,15 @@ class ShowsDataFetcher {
             ),
         )
 
+    @PreAuthorize("isAuthenticated()")
     @DgsQuery
     fun shows(
         @InputArgument nameFilter: String?,
-    ): List<Show> =
+    ): Flux<Show> =
         if (nameFilter != null) {
-            shows.filter { it.name.contains(nameFilter) }
+            Flux.just(shows.filter { it.name.contains(nameFilter) }[0])
         } else {
-            shows
+            Flux.just(shows[0])
         }
 
     data class Show(
