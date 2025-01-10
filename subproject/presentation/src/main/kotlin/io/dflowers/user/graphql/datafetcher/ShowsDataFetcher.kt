@@ -1,4 +1,4 @@
-package io.dflowers.user.graphql.query
+package io.dflowers.user.graphql.datafetcher
 
 import com.netflix.graphql.dgs.DgsComponent
 import com.netflix.graphql.dgs.DgsQuery
