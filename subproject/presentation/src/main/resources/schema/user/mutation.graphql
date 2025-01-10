@@ -1,3 +1,4 @@
 extend type Mutation {
     signIn(input: SignInInput!): SignInResponse!
+    signUp(input: SignUpInput!): SignUpResponse!
 }

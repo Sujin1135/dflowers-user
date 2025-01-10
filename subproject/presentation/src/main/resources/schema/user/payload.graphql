@@ -3,6 +3,16 @@ input SignInInput {
     password: String!
 }
 
+input SignUpInput {
+    email: String!
+    password: String!
+    name: String!
+}
+
 type SignInResponse {
-    tokenInfo: TokenInfo
+    tokenInfo: TokenInfo!
+}
+
+type SignUpResponse {
+    user: User!
 }
