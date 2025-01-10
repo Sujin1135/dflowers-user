@@ -6,9 +6,9 @@ import com.netflix.graphql.dgs.DgsComponent
 import com.netflix.graphql.dgs.DgsMutation
 import com.netflix.graphql.dgs.InputArgument
 import io.dflowers.user.dto.ErrorCode
-import io.dflowers.user.dto.SignInRequest
 import io.dflowers.user.entity.User
 import io.dflowers.user.exception.HttpException
+import io.dflowers.user.graphql.types.SignInInput
 import io.dflowers.user.graphql.types.SignInResponse
 import io.dflowers.user.graphql.types.TokenInfo
 import io.dflowers.user.service.FindOneUser
@@ -25,7 +25,7 @@ class UserDataFetcher(
 ) {
     @DgsMutation
     fun signIn(
-        @InputArgument input: SignInRequest,
+        @InputArgument input: SignInInput,
     ): Mono<SignInResponse> =
         mono {
             val user =
