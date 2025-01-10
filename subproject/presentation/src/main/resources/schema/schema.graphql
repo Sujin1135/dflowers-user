@@ -1,3 +1,5 @@
 type Query {
     shows(nameFilter: String): [User]
 }
+
+type Mutation {}

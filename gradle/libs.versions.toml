@@ -34,6 +34,7 @@ jjwt = "0.12.6"
 bcrypt = "0.4.3"
 java-extended-scalars = "22.0"
 dgs = "9.2.2"
+dgs-codegen = "7.0.3"
 
 [plugins]
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
@@ -45,6 +46,7 @@ jlleitschuh-ktlint = { id = "org.jlleitschuh.gradle.ktlint", version.ref = "jlle
 jooq = { id = "nu.studer.jooq", version.ref = "jooq-plugin" }
 flyway = { id = "org.flywaydb.flyway", version.ref = "flyway" }
 detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }
+dgs-codegen = { id = "com.netflix.dgs.codegen", version.ref = "dgs-codegen" }
 
 [libraries]
 spring-boot-webflux = { group = "org.springframework.boot", name = "spring-boot-starter-webflux", version.ref = "spring" }

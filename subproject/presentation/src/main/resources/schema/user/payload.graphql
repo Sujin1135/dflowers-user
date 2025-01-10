@@ -1,0 +1,8 @@
+input SignInInput {
+    email: String!
+    password: String!
+}
+
+type SignInResponse {
+    tokenInfo: TokenInfo
+}
