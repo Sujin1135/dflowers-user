@@ -26,8 +26,6 @@ class SecurityConfig {
         http {
             securityMatcher(PathPatternParserServerWebExchangeMatcher("/**"))
             authorizeExchange {
-                authorize("/users/sign-in", permitAll)
-                authorize("/users/sign-up", permitAll)
                 authorize("/webjars/swagger-ui.html", permitAll)
                 authorize("/webjars/swagger-ui/**", permitAll)
                 authorize("/v3/api-docs/**", permitAll)
