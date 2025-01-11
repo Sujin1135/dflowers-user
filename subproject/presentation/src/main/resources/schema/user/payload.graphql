@@ -9,10 +9,14 @@ input SignUpInput {
     name: String!
 }
 
-type SignInResponse {
+type SignInPayload {
     tokenInfo: TokenInfo!
 }
 
-type SignUpResponse {
+union SignInResponse = SignInPayload | UnauthorizedError
+
+type SignUpPayload {
     user: User!
 }
+
+union SignUpResponse = SignUpPayload | AlreadyExistedError

@@ -1,0 +1,16 @@
+type InvalidArguments {
+    argument: String
+    message: String
+}
+
+type UnauthorizedError {
+    message: String
+}
+
+type AlreadyExistedError {
+    message: String
+}
+
+type NotFoundError {
+    message: String
+}
