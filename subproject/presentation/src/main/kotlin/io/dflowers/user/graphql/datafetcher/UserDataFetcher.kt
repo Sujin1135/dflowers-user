@@ -1,5 +1,6 @@
 package io.dflowers.user.graphql.datafetcher
 
+import arrow.core.raise.fold
 import arrow.core.raise.getOrElse
 import com.netflix.graphql.dgs.DgsComponent
 import com.netflix.graphql.dgs.DgsMutation
@@ -67,25 +68,27 @@ class UserDataFetcher(
         @InputArgument input: SignUpRequest,
     ): Mono<SignUpResponse> =
         mono {
-            val user =
-                signUpUser(
-                    User.Email(input.email),
-                    User.Password(input.password),
-                    User.Name(input.name),
-                ).getOrElse {
-                    return@mono when (it) {
+            signUpUser(
+                User.Email(input.email),
+                User.Password(input.password),
+                User.Name(input.name),
+            ).fold(
+                recover = {
+                    when (it) {
                         SignUp.Failure.AlreadyExists -> AlreadyExistedError(message = "이미 존재하는 사용자입니다.")
                     }
-                }
-            SignUpPayload(
-                user =
-                    GraphQLUser(
-                        id = user.id.toString(),
-                        email = user.email.value,
-                        name = user.name.value,
-                        created = user.created.value,
-                        modified = user.modified.value,
-                    ),
+                },
+                transform = {
+                    SignUpPayload(
+                        GraphQLUser(
+                            id = it.id.toString(),
+                            email = it.email.value,
+                            name = it.name.value,
+                            created = it.created.value,
+                            modified = it.modified.value,
+                        ),
+                    )
+                },
             )
         }
 }
