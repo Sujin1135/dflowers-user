@@ -1,5 +1,5 @@
 [versions]
-spring = "3.3.5"
+spring = "3.4.1"
 jackson-module-kotlin = "2.17.2"
 reactor-kotlin-extensions = "1.2.3"
 kotlin = "2.0.10"
@@ -36,6 +36,7 @@ java-extended-scalars = "22.0"
 dgs = "9.2.2"
 dgs-codegen = "7.0.3"
 kotlin-logging = "7.0.3"
+logback = "1.5.16"
 
 [plugins]
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
@@ -100,6 +101,7 @@ java-extended-scalars = { group = "com.graphql-java", name = "graphql-java-exten
 dgs-starter = { group = "com.netflix.graphql.dgs", name = "graphql-dgs-webflux-starter", version.ref = "dgs" }
 dgs-extended-scalars = { group = "com.netflix.graphql.dgs", name = "graphql-dgs-extended-scalars", version.ref = "dgs" }
 kotlin-logging = { group = "io.github.oshai", name = "kotlin-logging-jvm", version.ref = "kotlin-logging" }
+logback = { group = "ch.qos.logback", name = "logback-classic", version.ref = "logback" }
 
 [bundles]
 grpc-presentation = ["grpc-stub", "grpc-protobuf", "grpc-netty", "protobuf-kotlin"]
@@ -110,3 +112,4 @@ kotest = ["kotest", "kotest-assertion", "kotest-spring", "kotest-arrow-kt"]
 testcontainers = ["testcontainers", "testcontainers-junit-jupiter", "testcontainers-r2dbc", "testcontainers-postgresql", "spring-boot-testcontainers"]
 jjwt = ["jjwt-api", "jjwt-impl", "jjwt-jackson"]
 graphql = ["java-extended-scalars", "spring-graphql", "dgs-starter", "dgs-extended-scalars"]
+logging = ["kotlin-logging", "logback"]

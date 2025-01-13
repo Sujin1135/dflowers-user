@@ -70,7 +70,7 @@ allprojects {
         implementation(rootProject.libs.kotlin.reflect)
         implementation(rootProject.libs.coroutines)
         implementation(rootProject.libs.bundles.arrow.kt)
-        implementation(rootProject.libs.kotlin.logging)
+        implementation(rootProject.libs.bundles.logging)
 
         detektPlugins(rootProject.libs.detekt.rules)
 

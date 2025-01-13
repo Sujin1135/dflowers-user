@@ -5,3 +5,9 @@ spring:
 grpc:
   server:
     port: 6565
+
+logging:
+  structured:
+    format:
+      console: ecs
+      file: ecs
