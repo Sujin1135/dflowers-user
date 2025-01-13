@@ -35,6 +35,7 @@ bcrypt = "0.4.3"
 java-extended-scalars = "22.0"
 dgs = "9.2.2"
 dgs-codegen = "7.0.3"
+kotlin-logging = "7.0.3"
 
 [plugins]
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
@@ -98,6 +99,7 @@ bcrypt = { group = "de.svenkubiak", name = "jBCrypt", version.ref = "bcrypt" }
 java-extended-scalars = { group = "com.graphql-java", name = "graphql-java-extended-scalars", version.ref = "java-extended-scalars" }
 dgs-starter = { group = "com.netflix.graphql.dgs", name = "graphql-dgs-webflux-starter", version.ref = "dgs" }
 dgs-extended-scalars = { group = "com.netflix.graphql.dgs", name = "graphql-dgs-extended-scalars", version.ref = "dgs" }
+kotlin-logging = { group = "io.github.oshai", name = "kotlin-logging-jvm", version.ref = "kotlin-logging" }
 
 [bundles]
 grpc-presentation = ["grpc-stub", "grpc-protobuf", "grpc-netty", "protobuf-kotlin"]
