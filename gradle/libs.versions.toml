@@ -98,7 +98,7 @@ spring-validation = { module = "org.springframework.boot:spring-boot-starter-val
 spring-graphql = { group = "org.springframework.boot", name = "spring-boot-starter-graphql", version.ref = "spring" }
 bcrypt = { group = "de.svenkubiak", name = "jBCrypt", version.ref = "bcrypt" }
 java-extended-scalars = { group = "com.graphql-java", name = "graphql-java-extended-scalars", version.ref = "java-extended-scalars" }
-dgs-starter = { group = "com.netflix.graphql.dgs", name = "graphql-dgs-webflux-starter", version.ref = "dgs" }
+dgs-starter = { group = "com.netflix.graphql.dgs", name = "graphql-dgs-spring-graphql-starter", version.ref = "dgs" }
 dgs-extended-scalars = { group = "com.netflix.graphql.dgs", name = "graphql-dgs-extended-scalars", version.ref = "dgs" }
 kotlin-logging = { group = "io.github.oshai", name = "kotlin-logging-jvm", version.ref = "kotlin-logging" }
 logback = { group = "ch.qos.logback", name = "logback-classic", version.ref = "logback" }
