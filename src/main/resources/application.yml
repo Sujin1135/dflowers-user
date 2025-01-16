@@ -10,4 +10,3 @@ logging:
   structured:
     format:
       console: ecs
-      file: ecs
