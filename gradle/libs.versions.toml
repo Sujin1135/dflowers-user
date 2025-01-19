@@ -36,7 +36,9 @@ java-extended-scalars = "22.0"
 dgs = "9.2.2"
 dgs-codegen = "7.0.3"
 kotlin-logging = "7.0.3"
-logback = "1.5.16"
+micrometer-propagation = "1.1.1"
+micrometer-brave = "1.4.2"
+logging-ecs-format = "1.6.0"
 
 [plugins]
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
@@ -101,7 +103,11 @@ java-extended-scalars = { group = "com.graphql-java", name = "graphql-java-exten
 dgs-starter = { group = "com.netflix.graphql.dgs", name = "graphql-dgs-spring-graphql-starter", version.ref = "dgs" }
 dgs-extended-scalars = { group = "com.netflix.graphql.dgs", name = "graphql-dgs-extended-scalars", version.ref = "dgs" }
 kotlin-logging = { group = "io.github.oshai", name = "kotlin-logging-jvm", version.ref = "kotlin-logging" }
-logback = { group = "ch.qos.logback", name = "logback-classic", version.ref = "logback" }
+micrometer-propagation = { group = "io.micrometer", name = "context-propagation", version.ref = "micrometer-propagation" }
+micrometer-brave = { group = "io.micrometer" , name = "micrometer-tracing-bridge-brave", version.ref = "micrometer-brave" }
+spring-boot-logging = { group = "org.springframework.boot", name = "spring-boot-starter-logging", version.ref = "spring" }
+spring-boot-actuator = { group = "org.springframework.boot", name = "spring-boot-starter-actuator", version.ref = "spring" }
+logging-ecs-format = { group = "co.elastic.logging", name = "logback-ecs-encoder", version.ref = "logging-ecs-format" }
 
 [bundles]
 grpc-presentation = ["grpc-stub", "grpc-protobuf", "grpc-netty", "protobuf-kotlin"]
@@ -112,4 +118,5 @@ kotest = ["kotest", "kotest-assertion", "kotest-spring", "kotest-arrow-kt"]
 testcontainers = ["testcontainers", "testcontainers-junit-jupiter", "testcontainers-r2dbc", "testcontainers-postgresql", "spring-boot-testcontainers"]
 jjwt = ["jjwt-api", "jjwt-impl", "jjwt-jackson"]
 graphql = ["java-extended-scalars", "spring-graphql", "dgs-starter", "dgs-extended-scalars"]
-logging = ["kotlin-logging", "logback"]
+logging = ["spring-boot-logging", "kotlin-logging", "logging-ecs-format"]
+tracing = ["spring-boot-actuator", "micrometer-propagation", "micrometer-brave"]

@@ -1,4 +1,6 @@
 spring:
+  profiles:
+    active: local
   application:
     name: user
 
@@ -6,7 +8,13 @@ grpc:
   server:
     port: 6565
 
-logging:
-  structured:
-    format:
-      console: ecs
+management:
+  tracing:
+    sampling:
+      probability: 1.0
+  metrics:
+    distribution:
+      percentiles-histogram:
+        http:
+          server:
+            requests: true

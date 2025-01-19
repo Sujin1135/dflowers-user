@@ -6,6 +6,7 @@ import arrow.core.raise.ensure
 import io.dflowers.user.entity.User
 import io.dflowers.user.repository.UserRepository
 import io.github.oshai.kotlinlogging.KotlinLogging
+import org.slf4j.MDC
 import org.springframework.stereotype.Service
 
 @Service
@@ -24,6 +25,7 @@ class SignUp(
         name: User.Name,
     ): Effect<Failure, User> =
         effect {
+            MDC.put("test", email.toString())
             logger.info { "started to sign up by email($email) and name($name)" }
 
             ensure(userRepository.findOneByEmail(email).bind() == null) {

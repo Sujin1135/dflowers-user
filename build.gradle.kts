@@ -71,10 +71,10 @@ allprojects {
         implementation(rootProject.libs.coroutines)
         implementation(rootProject.libs.bundles.arrow.kt)
         implementation(rootProject.libs.bundles.logging)
+        implementation(rootProject.libs.block.hound)
+        implementation(rootProject.libs.bundles.tracing)
 
         detektPlugins(rootProject.libs.detekt.rules)
-
-        implementation(rootProject.libs.block.hound)
 
         compileOnly(rootProject.libs.tomcat)
 
