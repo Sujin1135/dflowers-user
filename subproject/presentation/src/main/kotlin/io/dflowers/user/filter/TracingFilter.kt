@@ -10,8 +10,8 @@ import org.springframework.web.server.WebFilterChain
 import reactor.core.publisher.Hooks
 import reactor.core.publisher.Mono
 
-const val KEY_TXID = "traceId"
-const val KEY_SPID = "spanId"
+const val KEY_TRANSACTION_ID = "traceId"
+const val KEY_SPAN_ID = "spanId"
 
 @Component
 @Order(1)
@@ -30,8 +30,8 @@ class TracingFilter(
     ): Mono<Void> {
         val traceId = currentTraceContext.get().traceId()
         val spanId = currentTraceContext.get().spanId()
-        MDC.put(KEY_TXID, traceId.toString())
-        MDC.put(KEY_SPID, spanId.toString())
+        MDC.put(KEY_TRANSACTION_ID, traceId.toString())
+        MDC.put(KEY_SPAN_ID, spanId.toString())
         return chain.filter(exchange)
     }
 }
