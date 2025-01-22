@@ -39,6 +39,8 @@ kotlin-logging = "7.0.3"
 micrometer-propagation = "1.1.1"
 micrometer-brave = "1.4.2"
 logging-ecs-format = "1.6.0"
+logback-more-appenders = "1.8.8"
+fluentd-logger = "0.3.4"
 
 [plugins]
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
@@ -108,6 +110,8 @@ micrometer-brave = { group = "io.micrometer" , name = "micrometer-tracing-bridge
 spring-boot-logging = { group = "org.springframework.boot", name = "spring-boot-starter-logging", version.ref = "spring" }
 spring-boot-actuator = { group = "org.springframework.boot", name = "spring-boot-starter-actuator", version.ref = "spring" }
 logging-ecs-format = { group = "co.elastic.logging", name = "logback-ecs-encoder", version.ref = "logging-ecs-format" }
+logback-more-appenders = { group = "com.sndyuk", name = "logback-more-appenders", version.ref = "logback-more-appenders" }
+fluentd-logger = { group = "org.fluentd", name = "fluent-logger", version.ref = "fluentd-logger" }
 
 [bundles]
 grpc-presentation = ["grpc-stub", "grpc-protobuf", "grpc-netty", "protobuf-kotlin"]
@@ -118,5 +122,5 @@ kotest = ["kotest", "kotest-assertion", "kotest-spring", "kotest-arrow-kt"]
 testcontainers = ["testcontainers", "testcontainers-junit-jupiter", "testcontainers-r2dbc", "testcontainers-postgresql", "spring-boot-testcontainers"]
 jjwt = ["jjwt-api", "jjwt-impl", "jjwt-jackson"]
 graphql = ["java-extended-scalars", "spring-graphql", "dgs-starter", "dgs-extended-scalars"]
-logging = ["spring-boot-logging", "kotlin-logging", "logging-ecs-format"]
+logging = ["spring-boot-logging", "kotlin-logging", "logging-ecs-format", "logback-more-appenders", "fluentd-logger"]
 tracing = ["spring-boot-actuator", "micrometer-propagation", "micrometer-brave"]
