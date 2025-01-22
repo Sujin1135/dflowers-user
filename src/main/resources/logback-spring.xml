@@ -16,7 +16,7 @@
 
   <appender name="FLUENT" class="ch.qos.logback.more.appenders.DataFluentAppender">
     <remoteHost>127.0.0.1</remoteHost> <!-- Fluentd가 실행 중인 호스트 -->
-    <port>24223</port> <!-- Fluentd 포트 -->
+    <port>24224</port> <!-- Fluentd 포트 -->
     <tag>springboot</tag> <!-- 로그 태그 -->
 
     <encoder class="co.elastic.logging.logback.EcsEncoder">
