@@ -1,7 +1,6 @@
 package io.dflowers.user.graphql.datafetcher
 
 import arrow.core.raise.fold
-import arrow.core.raise.getOrElse
 import com.netflix.graphql.dgs.DgsComponent
 import com.netflix.graphql.dgs.DgsMutation
 import com.netflix.graphql.dgs.InputArgument
@@ -15,20 +14,16 @@ import io.dflowers.user.graphql.types.SignUpPayload
 import io.dflowers.user.graphql.types.SignUpResponse
 import io.dflowers.user.graphql.types.TokenInfo
 import io.dflowers.user.graphql.types.UnauthorizedError
-import io.dflowers.user.service.FindOneUser
+import io.dflowers.user.service.SignIn
 import io.dflowers.user.service.SignUp
-import io.dflowers.user.util.JwtUtil
 import kotlinx.coroutines.reactor.mono
-import org.springframework.security.crypto.password.PasswordEncoder
 import reactor.core.publisher.Mono
 import io.dflowers.user.graphql.types.User as GraphQLUser
 
 @DgsComponent
 class UserDataFetcher(
     private val signUpUser: SignUp,
-    private val findOneUser: FindOneUser,
-    private val passwordEncoder: PasswordEncoder,
-    private val jwtUtil: JwtUtil,
+    private val signInUser: SignIn,
 ) {
     @DgsMutation
     fun signIn(
@@ -36,31 +31,32 @@ class UserDataFetcher(
     ): Mono<SignInResponse> =
         mono {
             val unauthorizedErrorMessage = "사용자 이메일 혹은 비밀번호가 올바르지 않습니다."
-            val user =
-                findOneUser(User.Email(input.email))
-                    .getOrElse {
-                        return@mono when (it) {
-                            FindOneUser.Failure.NotFoundUser ->
-                                UnauthorizedError(
-                                    message = unauthorizedErrorMessage,
-                                )
-                        }
-                    }
+            signInUser(User.Email(input.email), User.Password(input.password)).fold(
+                recover = {
+                    when (it) {
+                        SignIn.Failure.NotFoundUser ->
+                            UnauthorizedError(
+                                message = unauthorizedErrorMessage,
+                            )
 
-            if (!passwordEncoder.matches(input.password, user.password.value)) {
-                UnauthorizedError(message = unauthorizedErrorMessage)
-            } else {
-                val token = jwtUtil.createAuthTokens(input.email)
-                SignInPayload(
-                    tokenInfo =
-                        TokenInfo(
-                            accessToken = token.accessToken,
-                            accessTokenExpiresIn = token.accessTokenExpiresIn,
-                            refreshToken = token.refreshToken,
-                            refreshTokenExpiresIn = token.refreshTokenExpiresIn,
-                        ),
-                )
-            }
+                        SignIn.Failure.PasswordInvalid ->
+                            UnauthorizedError(
+                                message = unauthorizedErrorMessage,
+                            )
+                    }
+                },
+                transform = {
+                    SignInPayload(
+                        tokenInfo =
+                            TokenInfo(
+                                accessToken = it.accessToken,
+                                accessTokenExpiresIn = it.accessTokenExpiresIn,
+                                refreshToken = it.refreshToken,
+                                refreshTokenExpiresIn = it.refreshTokenExpiresIn,
+                            ),
+                    )
+                },
+            )
         }
 
     @DgsMutation

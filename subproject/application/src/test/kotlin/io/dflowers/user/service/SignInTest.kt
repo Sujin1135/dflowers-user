@@ -1,7 +1,5 @@
 package io.dflowers.user.service
 
-import arrow.core.raise.get
-import arrow.core.raise.getOrNull
 import arrow.core.raise.toEither
 import io.dflowers.user.config.FlywayTestConfig
 import io.dflowers.user.config.JooqTestConfig
@@ -10,12 +8,10 @@ import io.dflowers.user.entity.User
 import io.dflowers.user.repository.UserRepository
 import io.dflowers.user.repository.UserRepositoryImpl
 import io.dflowers.user.util.Argon2IdPasswordEncoder
-import io.dflowers.user.util.PasswordEncoder
+import io.dflowers.user.util.JwtUtil
 import io.kotest.assertions.arrow.core.shouldBeLeft
 import io.kotest.assertions.arrow.core.shouldBeRight
 import io.kotest.core.spec.style.FreeSpec
-import io.kotest.matchers.shouldBe
-import io.kotest.matchers.shouldNotBe
 import io.kotest.matchers.types.shouldBeTypeOf
 import org.flywaydb.core.Flyway
 import org.mindrot.jbcrypt.BCrypt
@@ -35,12 +31,21 @@ import org.testcontainers.junit.jupiter.Testcontainers
     FlywayTestConfig::class,
     TestcontainersConfig::class,
 )
-@SpringBootTest(classes = [SignUp::class, UserRepository::class, UserRepositoryImpl::class, Argon2IdPasswordEncoder::class])
-class SignUpTest(
+@SpringBootTest(
+    classes = [
+        SignIn::class,
+        SignUp::class,
+        FindOneUser::class,
+        UserRepository::class,
+        UserRepositoryImpl::class,
+        Argon2IdPasswordEncoder::class,
+        JwtUtil::class,
+    ],
+)
+class SignInTest(
+    private val signIn: SignIn,
     private val signUp: SignUp,
     private val flyway: Flyway,
-    private val repository: UserRepository,
-    private val passwordEncoder: PasswordEncoder,
 ) : FreeSpec({
         val email = User.Email("test@example.com")
         val password = User.Password(BCrypt.hashpw("test123!", BCrypt.gensalt()))
@@ -48,28 +53,28 @@ class SignUpTest(
 
         beforeTest {
             flyway.migrate()
+
+            signUp(email, password, name).toEither()
         }
 
         afterTest {
             flyway.clean()
         }
 
-        "should return created user" - {
-            signUp(email, password, name).toEither().shouldBeRight()
+        "should return the credential token" - {
+            signIn(email, password).toEither().shouldBeRight()
         }
 
-        "should return the correctly hashed password" - {
-            signUp(email, password, name).toEither().shouldBeRight()
-
-            val found = repository.findOneByEmail(email).get()
-
-            found!!.password shouldNotBe password
-            passwordEncoder.matches(password.value, found.password.value).get().shouldBe(true)
+        "should raise failure cause not found user" - {
+            signIn(User.Email("invalid@gmail.com"), password)
+                .toEither()
+                .shouldBeLeft()
+                .shouldBeTypeOf<SignIn.Failure.NotFoundUser>()
         }
-
-        "should raise already exists failure because duplicated email existed" - {
-            signUp(email, password, name).getOrNull()
-
-            signUp(email, password, name).toEither().shouldBeLeft().shouldBeTypeOf<SignUp.Failure.AlreadyExists>()
+        "should raise failure cause wrong password" - {
+            signIn(email, User.Password("invalid123!"))
+                .toEither()
+                .shouldBeLeft()
+                .shouldBeTypeOf<SignIn.Failure.PasswordInvalid>()
         }
     })

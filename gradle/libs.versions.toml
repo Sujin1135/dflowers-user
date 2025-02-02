@@ -31,7 +31,6 @@ detekt-rules = "0.5.0"
 block-hound = "1.0.10.RELEASE"
 swagger = "2.3.0"
 jjwt = "0.12.6"
-bcrypt = "0.4.3"
 java-extended-scalars = "22.0"
 dgs = "9.2.2"
 dgs-codegen = "7.0.3"
@@ -100,7 +99,7 @@ jjwt-impl = { module = "io.jsonwebtoken:jjwt-impl", version.ref = "jjwt" }
 jjwt-jackson = { module = "io.jsonwebtoken:jjwt-jackson", version.ref = "jjwt" }
 spring-validation = { module = "org.springframework.boot:spring-boot-starter-validation", version.ref = "spring" }
 spring-graphql = { group = "org.springframework.boot", name = "spring-boot-starter-graphql", version.ref = "spring" }
-bcrypt = { group = "de.svenkubiak", name = "jBCrypt", version.ref = "bcrypt" }
+spring-crypto = { group = "org.springframework.security", name = "spring-security-crypto", version = "6.3.3" }
 java-extended-scalars = { group = "com.graphql-java", name = "graphql-java-extended-scalars", version.ref = "java-extended-scalars" }
 dgs-starter = { group = "com.netflix.graphql.dgs", name = "graphql-dgs-spring-graphql-starter", version.ref = "dgs" }
 dgs-extended-scalars = { group = "com.netflix.graphql.dgs", name = "graphql-dgs-extended-scalars", version.ref = "dgs" }
@@ -112,6 +111,7 @@ spring-boot-actuator = { group = "org.springframework.boot", name = "spring-boot
 logging-ecs-format = { group = "co.elastic.logging", name = "logback-ecs-encoder", version.ref = "logging-ecs-format" }
 logback-more-appenders = { group = "com.sndyuk", name = "logback-more-appenders", version.ref = "logback-more-appenders" }
 fluentd-logger = { group = "org.fluentd", name = "fluent-logger", version.ref = "fluentd-logger" }
+bouncycastle = { group = "org.bouncycastle", name = "bcprov-jdk18on", version = "1.80" }
 
 [bundles]
 grpc-presentation = ["grpc-stub", "grpc-protobuf", "grpc-netty", "protobuf-kotlin"]
@@ -124,3 +124,4 @@ jjwt = ["jjwt-api", "jjwt-impl", "jjwt-jackson"]
 graphql = ["java-extended-scalars", "spring-graphql", "dgs-starter", "dgs-extended-scalars"]
 logging = ["spring-boot-logging", "kotlin-logging", "logging-ecs-format", "logback-more-appenders", "fluentd-logger"]
 tracing = ["spring-boot-actuator", "micrometer-propagation", "micrometer-brave"]
+crypto = ["spring-crypto", "bouncycastle"]
