@@ -14,7 +14,6 @@ import io.kotest.assertions.arrow.core.shouldBeRight
 import io.kotest.core.spec.style.FreeSpec
 import io.kotest.matchers.types.shouldBeTypeOf
 import org.flywaydb.core.Flyway
-import org.mindrot.jbcrypt.BCrypt
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.context.annotation.Import
@@ -48,7 +47,7 @@ class SignInTest(
     private val flyway: Flyway,
 ) : FreeSpec({
         val email = User.Email("test@example.com")
-        val password = User.Password(BCrypt.hashpw("test123!", BCrypt.gensalt()))
+        val password = User.Password("test123!")
         val name = User.Name("최민규")
 
         beforeTest {
