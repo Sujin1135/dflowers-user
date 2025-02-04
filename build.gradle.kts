@@ -1,4 +1,5 @@
 import io.gitlab.arturbosch.detekt.Detekt
+import org.springframework.boot.gradle.tasks.bundling.BootJar
 
 plugins {
     alias(libs.plugins.kotlin.jvm)
@@ -23,15 +24,7 @@ allprojects {
     }
 }
 
-dependencies {
-    implementation(project(":subproject:interface"))
-    implementation(project(":subproject:presentation"))
-    implementation(project(":subproject:domain"))
-    implementation(project(":subproject:application"))
-    implementation(project(":subproject:infrastructure"))
-}
-
-allprojects {
+subprojects {
     apply(
         plugin =
             rootProject.libs.plugins.kotlin.jvm
@@ -116,4 +109,12 @@ kotlin {
 
 tasks.withType<Test> {
     useJUnitPlatform()
+}
+
+tasks.getByName<BootJar>("bootJar") {
+    enabled = false
+}
+
+tasks.getByName<Jar>("jar") {
+    enabled = true
 }

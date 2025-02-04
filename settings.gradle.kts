@@ -6,4 +6,5 @@ include(
     ":subproject:application",
     ":subproject:domain",
     ":subproject:infrastructure",
+    ":subproject:boot",
 )
