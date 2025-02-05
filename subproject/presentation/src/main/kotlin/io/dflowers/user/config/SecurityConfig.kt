@@ -31,6 +31,8 @@ class SecurityConfig {
                 authorize("/v3/api-docs/**", permitAll)
                 authorize("/graphql", permitAll)
                 authorize("/graphiql/**", permitAll)
+                authorize("/auth/verify-code", permitAll)
+                authorize("/success", permitAll)
                 authorize("/**", authenticated)
             }
             addFilterAt(authenticationWebFilter, SecurityWebFiltersOrder.AUTHENTICATION)
