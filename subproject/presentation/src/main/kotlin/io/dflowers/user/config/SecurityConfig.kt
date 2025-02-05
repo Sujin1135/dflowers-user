@@ -33,6 +33,7 @@ class SecurityConfig {
                 authorize("/graphiql/**", permitAll)
                 authorize("/auth/verify-code", permitAll)
                 authorize("/auth/success", permitAll)
+                authorize("/auth/failure", permitAll)
                 authorize("/**", authenticated)
             }
             addFilterAt(authenticationWebFilter, SecurityWebFiltersOrder.AUTHENTICATION)
