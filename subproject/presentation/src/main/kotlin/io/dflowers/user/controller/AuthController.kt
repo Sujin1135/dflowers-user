@@ -23,7 +23,6 @@ class AuthController(
     @GetMapping("/verify-code")
     suspend fun handleGoogleCallback(
         @RequestParam("code") code: String,
-        @RequestParam("state") state: String,
         exchange: ServerWebExchange,
     ) {
         logger.info { "requested google code: $code" }
