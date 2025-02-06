@@ -16,12 +16,26 @@ class GoogleOAuth2CodeVerifier(
     private val webClient: WebClient,
     @Value("\${oauth2.google.token_url}") private val googleTokenUrl: String,
     @Value("\${oauth2.google.redirect_signin_uri}") private val googleSignInRedirectUri: String,
+    @Value("\${oauth2.google.redirect_signup_uri}") private val googleSignUpRedirectUri: String,
     @Value("\${oauth2.google.client_id}") private val googleClientId: String,
     @Value("\${oauth2.google.secret_id}") private val googleSecretId: String,
 ) : OAuth2CodeVerifier {
     private val googleUserInfoUrl = "https://www.googleapis.com/oauth2/v2/userinfo"
 
     override fun verifyForSignIn(code: String): Effect<Nothing, OAuth2TokenResponse> =
+        effect {
+            verify(code, googleSignInRedirectUri).bind()
+        }
+
+    override fun verifyForSignUp(code: String): Effect<Nothing, OAuth2TokenResponse> =
+        effect {
+            verify(code, googleSignUpRedirectUri).bind()
+        }
+
+    private fun verify(
+        code: String,
+        redirectUri: String,
+    ): Effect<Nothing, OAuth2TokenResponse> =
         effect {
             webClient
                 .post()
@@ -31,7 +45,7 @@ class GoogleOAuth2CodeVerifier(
                         "code" to code,
                         "client_id" to googleClientId,
                         "client_secret" to googleSecretId,
-                        "redirect_uri" to googleSignInRedirectUri,
+                        "redirect_uri" to redirectUri,
                         "grant_type" to "authorization_code",
                     ),
                 ).retrieve()

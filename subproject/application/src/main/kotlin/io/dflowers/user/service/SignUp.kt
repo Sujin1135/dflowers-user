@@ -33,6 +33,6 @@ class SignUp(
             }
 
             val hashed = passwordEncoder.encode(password.value).bind()
-            userRepository.insert(User.of(email, User.Password(hashed), name)).bind()
+            userRepository.insert(User.defaultOf(email, User.Password(hashed), name)).bind()
         }
 }

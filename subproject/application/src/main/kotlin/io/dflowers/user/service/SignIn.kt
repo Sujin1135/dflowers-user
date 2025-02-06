@@ -36,7 +36,7 @@ class SignIn(
                         }
                     }.bind()
 
-            ensure(passwordEncoder.matches(password.value, user.password.value).bind()) {
+            ensure(passwordEncoder.matches(password.value, user.password!!.value).bind()) {
                 raise(Failure.PasswordInvalid)
             }
             jwtUtil.createAuthTokens(email.value)

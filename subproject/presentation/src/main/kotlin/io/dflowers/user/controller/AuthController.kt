@@ -3,6 +3,7 @@ package io.dflowers.user.controller
 import arrow.core.raise.fold
 import io.dflowers.user.entity.OAuth2Provider
 import io.dflowers.user.service.SignInWithOAuth2
+import io.dflowers.user.service.SignUpWithOAuth2
 import io.github.oshai.kotlinlogging.KotlinLogging
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.GetMapping
@@ -17,6 +18,7 @@ import java.net.URI
 @RequestMapping("/auth")
 class AuthController(
     private val signInWithOAuth2: SignInWithOAuth2,
+    private val signUpWithOAuth2: SignUpWithOAuth2,
 ) {
     private val logger = KotlinLogging.logger {}
 
@@ -51,17 +53,38 @@ class AuthController(
         )
     }
 
+    @GetMapping("/google/signup/verify-code")
+    suspend fun handleGoogleCallbackForSignUp(
+        @RequestParam("code") code: String,
+        exchange: ServerWebExchange,
+    ) {
+        logger.info { "requested google code for sign up: $code" }
+
+        signUpWithOAuth2(code, OAuth2Provider.GOOGLE).fold(
+            recover = {
+                when (it) {
+                    SignUpWithOAuth2.Failure.AlreadyExists -> {
+                        exchange.response.setStatusCode(HttpStatus.FOUND)
+                        exchange.response.headers.location = URI.create("/auth/failure")
+                    }
+                }
+            },
+            transform = {
+                exchange.response.setStatusCode(HttpStatus.FOUND)
+                exchange.response.headers.location =
+                    UriComponentsBuilder
+                        .fromPath("/auth/success")
+                        .build()
+                        .toUri()
+            },
+        )
+    }
+
     /**
      * It is not required for production
      */
     @GetMapping("/success")
-    fun successPage(
-        @RequestParam("access_token") accessToken: String,
-        @RequestParam("access_token_expires_in") accessTokenExpiresIn: Long,
-        @RequestParam("refresh_token") refreshToken: String,
-        @RequestParam("refresh_token_expires_in") refreshTokenExpiresIn: Long,
-    ): String =
-        "Sign in successfully <br/> access token = $accessToken <br/> access token expires in = $accessTokenExpiresIn <br/> refresh token = $refreshToken <br/> refresh token expires in = $refreshTokenExpiresIn"
+    fun successPage(): String = "Sign in successfully"
 
     @GetMapping("/failure")
     fun failurePage(): String = "Sign in failed"

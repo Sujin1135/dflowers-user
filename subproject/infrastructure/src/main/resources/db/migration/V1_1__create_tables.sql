@@ -5,8 +5,9 @@ create table if not exists users
     id       uuid                                                            not null
         primary key,
     email    varchar(355)                                                    not null,
-    password varchar(255)                                                    not null,
+    password varchar(255),
     name     varchar(50)                                                     not null,
+    provider varchar(15),
     deleted  timestamp                                                       null,
     created  timestamp default CURRENT_TIMESTAMP                             not null,
     modified timestamp default CURRENT_TIMESTAMP                             not null
@@ -20,8 +21,9 @@ create table if not exists owners
     id       uuid                                                            not null
     primary key,
     email    varchar(355)                                                    not null,
-    password varchar(255)                                                    not null,
+    password varchar(255),
     name     varchar(50)                                                     not null,
+    provider varchar(15),
     deleted  timestamp                                                       null,
     created  timestamp default CURRENT_TIMESTAMP                             not null,
     modified timestamp default CURRENT_TIMESTAMP                             not null
