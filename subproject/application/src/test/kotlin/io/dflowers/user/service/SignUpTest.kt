@@ -63,7 +63,7 @@ class SignUpTest(
             val found = repository.findOneByEmail(email).get()
 
             found!!.password shouldNotBe password
-            passwordEncoder.matches(password.value, found.password.value).get().shouldBe(true)
+            passwordEncoder.matches(password.value, found.password!!.value).get().shouldBe(true)
         }
 
         "should raise already exists failure because duplicated email existed" - {
