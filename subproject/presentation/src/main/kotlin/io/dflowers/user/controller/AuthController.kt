@@ -20,7 +20,7 @@ class AuthController(
 ) {
     private val logger = KotlinLogging.logger {}
 
-    @GetMapping("/google/verify-code")
+    @GetMapping("/google/signin/verify-code")
     suspend fun handleGoogleCallback(
         @RequestParam("code") code: String,
         exchange: ServerWebExchange,

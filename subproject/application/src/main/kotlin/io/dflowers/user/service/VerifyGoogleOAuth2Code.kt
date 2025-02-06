@@ -13,7 +13,7 @@ class VerifyGoogleOAuth2Code(
 ) {
     operator fun invoke(code: String): Effect<Nothing, OAuth2UserInfo> =
         effect {
-            val tokenResponse = oauth2CodeVerifier.verify(code).bind()
+            val tokenResponse = oauth2CodeVerifier.verifyForSignIn(code).bind()
             oauth2CodeVerifier.findUserInfo(tokenResponse.accessToken).bind()
         }
 }

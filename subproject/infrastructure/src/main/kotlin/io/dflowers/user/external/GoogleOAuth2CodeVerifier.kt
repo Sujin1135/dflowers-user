@@ -15,13 +15,13 @@ import org.springframework.web.reactive.function.client.bodyToMono
 class GoogleOAuth2CodeVerifier(
     private val webClient: WebClient,
     @Value("\${oauth2.google.token_url}") private val googleTokenUrl: String,
-    @Value("\${oauth2.google.redirect_uri}") private val googleRedirectUri: String,
+    @Value("\${oauth2.google.redirect_signin_uri}") private val googleSignInRedirectUri: String,
     @Value("\${oauth2.google.client_id}") private val googleClientId: String,
     @Value("\${oauth2.google.secret_id}") private val googleSecretId: String,
 ) : OAuth2CodeVerifier {
     private val googleUserInfoUrl = "https://www.googleapis.com/oauth2/v2/userinfo"
 
-    override fun verify(code: String): Effect<Nothing, OAuth2TokenResponse> =
+    override fun verifyForSignIn(code: String): Effect<Nothing, OAuth2TokenResponse> =
         effect {
             webClient
                 .post()
@@ -31,7 +31,7 @@ class GoogleOAuth2CodeVerifier(
                         "code" to code,
                         "client_id" to googleClientId,
                         "client_secret" to googleSecretId,
-                        "redirect_uri" to googleRedirectUri,
+                        "redirect_uri" to googleSignInRedirectUri,
                         "grant_type" to "authorization_code",
                     ),
                 ).retrieve()

@@ -3,7 +3,8 @@ graphql:
     - "io.dflowers.user"
 oauth2:
   google:
-    redirect_uri: ${GOOGLE_REDIRECT_URI}
+    redirect_signin_uri: ${GOOGLE_REDIRECT_SIGNIN_URI}
+    redirect_signup_uri: ${GOOGLE_REDIRECT_SIGNUP_URI}
     token_url: https://oauth2.googleapis.com/token
     client_id: ${GOOGLE_CLIENT_ID}
     secret_id: ${GOOGLE_SECRET_ID}
