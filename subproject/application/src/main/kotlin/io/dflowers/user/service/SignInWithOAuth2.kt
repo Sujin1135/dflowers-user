@@ -25,7 +25,7 @@ class SignInWithOAuth2(
         provider: OAuth2Provider,
     ): Effect<Failure, TokenInfo> =
         effect {
-            val tokenResponse =
+            val oauth2UserInfo =
                 when (provider) {
                     OAuth2Provider.GOOGLE -> {
                         verifyGoogleOAuth2Code(code).bind()
@@ -33,7 +33,7 @@ class SignInWithOAuth2(
                 }
 
             val user =
-                ensureNotNull(userRepository.findOneByEmail(User.Email(tokenResponse.email)).bind()) {
+                ensureNotNull(userRepository.findOneByEmail(User.Email(oauth2UserInfo.email)).bind()) {
                     raise(Failure.UserNotFound)
                 }
 

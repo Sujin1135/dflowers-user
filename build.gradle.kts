@@ -7,6 +7,7 @@ plugins {
     alias(libs.plugins.spring.boot)
     alias(libs.plugins.dependency.management)
     alias(libs.plugins.detekt)
+    `java-test-fixtures`
 }
 
 group = "io.dflowers"
@@ -55,6 +56,7 @@ subprojects {
                 .get()
                 .pluginId,
     )
+    apply(plugin = "java-test-fixtures")
 
     dependencies {
         implementation(rootProject.libs.spring.boot.webflux)
@@ -75,6 +77,8 @@ subprojects {
         testImplementation(rootProject.libs.reactor.test)
         testImplementation(rootProject.libs.junit5)
         testImplementation(rootProject.libs.bundles.kotest)
+        testImplementation(rootProject.libs.mockk)
+        testFixturesImplementation(rootProject.libs.fixture.monkey)
         testRuntimeOnly(rootProject.libs.junit.platform.launcher)
     }
 

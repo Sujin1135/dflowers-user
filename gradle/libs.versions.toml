@@ -112,6 +112,8 @@ logging-ecs-format = { group = "co.elastic.logging", name = "logback-ecs-encoder
 logback-more-appenders = { group = "com.sndyuk", name = "logback-more-appenders", version.ref = "logback-more-appenders" }
 fluentd-logger = { group = "org.fluentd", name = "fluent-logger", version.ref = "fluentd-logger" }
 bouncycastle = { group = "org.bouncycastle", name = "bcprov-jdk18on", version = "1.80" }
+mockk = { group = "io.mockk", name = "mockk", version = "1.13.16" }
+fixture-monkey = { group = "com.navercorp.fixturemonkey", name = "fixture-monkey-starter-kotlin", version = "1.1.8" }
 
 [bundles]
 grpc-presentation = ["grpc-stub", "grpc-protobuf", "grpc-netty", "protobuf-kotlin"]
