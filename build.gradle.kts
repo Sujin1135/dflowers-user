@@ -94,6 +94,7 @@ subprojects {
         }
     }
 
+    // TODO: check is it required
     tasks.withType<Detekt>().configureEach {
         reports {
             xml.required.set(true)
